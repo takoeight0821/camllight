@@ -2,14 +2,14 @@
 
 # Which C compiler to use.
 # Performance is often improved if you use gcc 2.x instead of cc.
-CC=gcc
+CC=gcc-8
 
 # Additional options to $(CC).
 # If you are using gcc, add -fno-defer-pop.
 # This option circumvents a gcc bug on some platforms (680x0, 80386).
 # If you are using Linux with libc6 (RedHat 5, Debian 2), add -D__FAVOR_BSD
 # This option avoids signal-related problems.
-OPTS=
+OPTS=-fno-defer-pop
 
 # Extra libraries that have to be linked with the runtime system.
 # The math library "-lm" is linked by default.
@@ -81,7 +81,7 @@ bootstrap: backup promote again compare
 
 # Save a copy of the current compiler
 backup:
-	sh tools/backup camlrun camlcomp camllink camllibr camllex 
+	sh tools/backup camlrun camlcomp camllink camllibr camllex
 
 # Make the newly compiled compiler the current compiler
 promote:
@@ -109,7 +109,7 @@ compare:
 
 # Restore the latest backup copy of the compiler
 restore:
-	sh tools/restore camlrun camlcomp camllink camllibr camllex 
+	sh tools/restore camlrun camlcomp camllink camllibr camllex
 
 # Compile all Caml code
 compile:
